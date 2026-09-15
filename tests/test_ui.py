@@ -55,9 +55,10 @@ class UiTests(unittest.TestCase):
         self.assertIn("Lalith & Chethan", readme)
         self.assertNotIn("Chethan Babu", html)
 
-    def test_journal_club_identity_mark(self):
+    def test_journal_club_wordmark(self):
         html = (ROOT / "index.html").read_text(encoding="utf-8")
-        self.assertIn('<span class="identity-mark" aria-hidden="true">JC</span>', html)
+        self.assertIn('<span class="identity-mark" aria-hidden="true">Journal Club</span>', html)
+        self.assertNotIn('<span class="identity-mark" aria-hidden="true">JC</span>', html)
 
     def test_catalog_has_complete_papers(self):
         data = json.loads((ROOT / "papers.json").read_text(encoding="utf-8"))

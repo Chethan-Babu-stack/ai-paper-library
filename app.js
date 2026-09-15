@@ -1,6 +1,6 @@
 const STORAGE_KEY = "chethan-ai-library-progress-v1";
 const PROPOSAL_EMAIL = "chethan1512@gmail.com";
-const DATA_VERSION = "20260915.2";
+const DATA_VERSION = "20260915.3";
 const VIEW_LABELS = {
   all: "All papers",
   datasets: "Open datasets",
