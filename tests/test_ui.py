@@ -24,6 +24,14 @@ class UiTests(unittest.TestCase):
         html = (ROOT / "index.html").read_text(encoding="utf-8")
         self.assertNotIn("Plan Monday", html)
 
+    def test_paper_proposal_prepares_email(self):
+        html = (ROOT / "index.html").read_text(encoding="utf-8")
+        javascript = (ROOT / "app.js").read_text(encoding="utf-8")
+        self.assertIn('id="proposal-form"', html)
+        self.assertIn('data-action="open-proposal"', html)
+        self.assertIn('const PROPOSAL_EMAIL = "chethan1512@gmail.com"', javascript)
+        self.assertIn("mailto:${PROPOSAL_EMAIL}", javascript)
+
     def test_catalog_has_complete_papers(self):
         data = json.loads((ROOT / "papers.json").read_text(encoding="utf-8"))
         self.assertEqual(len(data["papers"]), 43)

@@ -1,4 +1,5 @@
 const STORAGE_KEY = "chethan-ai-library-progress-v1";
+const PROPOSAL_EMAIL = "chethan1512@gmail.com";
 const VIEW_LABELS = {
   all: "All papers",
   datasets: "Open datasets",
@@ -344,6 +345,27 @@ function showToast(message) {
   showToast.timer = setTimeout(() => toast.classList.remove("visible"), 2200);
 }
 
+function prepareProposalEmail(form) {
+  const formData = new FormData(form);
+  const title = String(formData.get("title") || "").trim();
+  const url = String(formData.get("url") || "").trim();
+  const reason = String(formData.get("reason") || "").trim();
+  const body = [
+    "Hi Chethan,",
+    "",
+    "I would like to propose this paper for the journal club:",
+    "",
+    `Title: ${title}`,
+    `Link: ${url}`,
+    ...(reason ? ["", "Why it may be useful:", reason] : []),
+  ].join("\n");
+  const mailto = `mailto:${PROPOSAL_EMAIL}?subject=${encodeURIComponent(`Paper proposal: ${title}`)}&body=${encodeURIComponent(body)}`;
+  document.querySelector("#proposal-dialog").close();
+  form.reset();
+  showToast("Opening your email app…");
+  window.location.href = mailto;
+}
+
 function exportProgress() {
   const payload = JSON.stringify({ exportedAt: new Date().toISOString(), progress: state.progress }, null, 2);
   const url = URL.createObjectURL(new Blob([payload], { type: "application/json" }));
@@ -396,6 +418,8 @@ document.addEventListener("click", async (event) => {
     const paperId = action.dataset.paperId;
     if (action.dataset.action === "toggle-star") toggleStar(paperId);
     if (action.dataset.action === "open-import") document.querySelector("#import-dialog").showModal();
+    if (action.dataset.action === "open-proposal") document.querySelector("#proposal-dialog").showModal();
+    if (action.dataset.action === "close-proposal") document.querySelector("#proposal-dialog").close();
     if (action.dataset.action === "copy-command") {
       await navigator.clipboard.writeText(document.querySelector(`#${action.dataset.copyTarget}`).textContent);
       showToast("Command copied.");
@@ -461,6 +485,11 @@ document.querySelector("#progress-file").addEventListener("change", (event) => {
   const [file] = event.target.files;
   if (file) restoreProgress(file);
   event.target.value = "";
+});
+
+document.querySelector("#proposal-form").addEventListener("submit", (event) => {
+  event.preventDefault();
+  prepareProposalEmail(event.currentTarget);
 });
 
 Promise.all(["papers.json", "datasets.json", "sessions.json"].map((url) => fetch(url).then((response) => {
