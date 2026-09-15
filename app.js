@@ -62,10 +62,8 @@ function reviewInfo(paper) {
   const dueDate = new Date(baseDate);
   dueDate.setDate(dueDate.getDate() + interval);
   const days = Math.ceil((dueDate - new Date()) / 86400000);
-  let label = `Due ${formatDate(dueDate)}`;
-  if (days < 0) label = `${Math.abs(days)}d overdue`;
-  if (days === 0) label = "Due today";
-  if (days === 1) label = "Due tomorrow";
+  let label = `Review from ${formatDate(dueDate)}`;
+  if (days <= 0) label = "Ready for review";
   return { dueDate, days, isDue: days <= 0, label, interval };
 }
 

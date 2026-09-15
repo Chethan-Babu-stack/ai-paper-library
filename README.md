@@ -45,7 +45,7 @@ The catalog currently contains **40 unique AI research papers** imported recursi
 - Open **Monday sessions** to plan the weekly 16:00 Europe/Berlin reading event.
 - Press `/` to focus search, then search across titles, authors, abstracts, and topics.
 - Select a paper to read its full abstract, open arXiv, add private notes, or mark a revision complete.
-- Review intervals progress from 30 to 90, 180, and 365 days as reviews are completed.
+- Optional review intervals progress from 30 to 90, 180, and 365 days as reviews are completed; papers are simply shown as “Ready for review” when they return to the queue.
 - Notes, stars, and review history stay in browser storage. Use **Export progress** and **Restore progress** to move or back them up.
 
 Use the same local port (`8000`) consistently because browser storage is tied to the site address. Local progress can be exported before moving to a published GitHub Pages URL.
