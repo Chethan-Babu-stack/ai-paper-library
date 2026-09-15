@@ -1,0 +1,19 @@
+{
+  "arxivIds": {
+    "transmil.pdf": "2106.00908",
+    "multimodality/Week 6 - SigLIP.pdf": "2303.15343"
+  },
+  "categories": {
+    "2103.00020": "Multimodality",
+    "2409.12191": "Multimodality",
+    "2511.09554": "Images & Vision"
+  },
+  "exclude": {
+    "FlashAttention_v1_PPT.pdf": "Presentation slides, not a research paper",
+    "LLM Cheatsheet.pdf": "Reference cheatsheet, not a research paper",
+    "finetuning-large-models/pytorch-lora-main/Slides.pdf": "Presentation slides, not a research paper",
+    "multimodality/hpc_proposal.pdf": "Project proposal, not a published research paper",
+    "multimodality/opengptx_compute_time_proposal2.pdf": "Compute-time proposal, not a published research paper",
+    "multimodality/US20210182602A1.pdf": "Patent document, not a research paper"
+  }
+}

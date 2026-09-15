@@ -24,6 +24,17 @@ class ImportPapersTests(unittest.TestCase):
         paper = {"title": "Residential Property Layout", "abstract": "Survey boundaries and plot dimensions."}
         self.assertFalse(MODULE.is_ai_paper(paper))
 
+    def test_short_acronym_does_not_match_inside_word(self):
+        self.assertFalse(MODULE.contains_term("model involvement is measured", "vlm"))
+
+    def test_classifies_detr_as_images(self):
+        paper = {"title": "DAB-DETR", "abstract": "A transformer for object detection."}
+        self.assertEqual(MODULE.classify(paper), "Images & Vision")
+
+    def test_curated_category_overrides_keywords(self):
+        paper = {"url": "https://arxiv.org/abs/2409.12191", "title": "Qwen2-VL", "abstract": "language model"}
+        self.assertEqual(MODULE.curated_category(paper, {"2409.12191": "Multimodality"}), "Multimodality")
+
     def test_prefers_arxiv_url(self):
         paper = {"externalIds": {"ArXiv": "2401.01234", "DOI": "10.1/example"}}
         self.assertEqual(MODULE.canonical_url(paper), "https://arxiv.org/abs/2401.01234")

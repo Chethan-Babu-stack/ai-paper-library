@@ -6,7 +6,7 @@ The source PDFs remain local. Only titles, authors, abstracts, links, categories
 
 ## Current collection
 
-The workspace did not contain any AI papers when this repository was created. The three PDFs found elsewhere under `D:\self` were property/layout documents and were intentionally excluded.
+The catalog currently contains **40 unique AI research papers** imported recursively from `C:\Users\cheth\Desktop\papers`. Duplicate copies are merged by arXiv identity, directories named `Ignore` are skipped, and non-paper material is excluded through `paper-overrides.json`.
 
 ## Add papers
 
@@ -18,10 +18,16 @@ The workspace did not contain any AI papers when this repository was created. Th
    .venv\Scripts\python -m pip install -r requirements.txt
    ```
 
-3. Import metadata from Semantic Scholar:
+3. Import canonical metadata from arXiv:
 
    ```powershell
    .venv\Scripts\python scripts\import_papers.py
+   ```
+
+   To import from the current desktop collection instead:
+
+   ```powershell
+   .venv\Scripts\python scripts\import_papers.py "C:\Users\cheth\Desktop\papers"
    ```
 
 4. Review `papers.json`, then preview the site:
@@ -32,7 +38,7 @@ The workspace did not contain any AI papers when this repository was created. Th
 
    Open `http://localhost:8000`.
 
-The importer scans only PDF files, extracts a likely title, finds a reliable online record, requires an abstract and canonical link, checks for AI-related terms, and then categorizes the paper. Uncertain and non-AI matches are reported but not added.
+The importer scans only PDF files, recursively skips directories named `Ignore`, extracts embedded arXiv identifiers, fetches canonical metadata and abstracts directly from arXiv, checks for AI-related terms, and then categorizes the paper. Curated exceptions and non-paper exclusions live in `paper-overrides.json`. Additional directory names can be skipped with repeatable `--exclude-dir NAME` options.
 
 ## Categories
 
@@ -89,4 +95,3 @@ git push
 ```
 
 Pushing to `main` updates the published site automatically after GitHub Pages is enabled.
-
