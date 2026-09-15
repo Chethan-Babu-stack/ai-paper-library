@@ -1,6 +1,6 @@
 # Chethan's AI Paper Library
 
-A metadata-only collection of AI research papers read by **Chethan Babu**. Papers are grouped by topic, searchable, linked to their canonical arXiv or publisher page, and marked as done.
+A local-first research hub maintained by **Chethan Babu**. It tracks AI papers, revision progress, open datasets, and Monday reading sessions with their supporting links.
 
 The source PDFs remain local. Only titles, authors, abstracts, links, categories, and reading status are published.
 
@@ -41,12 +41,36 @@ The catalog currently contains **40 unique AI research papers** imported recursi
 ## Use the research workspace
 
 - Use the left pane for review queues, starred papers, recent reading, and topic collections.
+- Open **Open datasets** to browse curated datasets by area, modality, maintainer, and license.
+- Open **Monday sessions** to plan the weekly 16:00 Europe/Berlin reading event.
 - Press `/` to focus search, then search across titles, authors, abstracts, and topics.
 - Select a paper to read its full abstract, open arXiv, add private notes, or mark a revision complete.
 - Review intervals progress from 30 to 90, 180, and 365 days as reviews are completed.
 - Notes, stars, and review history stay in browser storage. Use **Export progress** and **Restore progress** to move or back them up.
 
 Use the same local port (`8000`) consistently because browser storage is tied to the site address. Local progress can be exported before moving to a published GitHub Pages URL.
+
+## Plan Monday sessions
+
+The recurring event is every Monday from 16:00–17:00 in `Europe/Berlin`. Download `journal-club.ics` from the Monday session view to add the recurrence to a calendar.
+
+Create or update the next Monday session with a paper by catalog ID or arXiv ID:
+
+```powershell
+.venv\Scripts\python scripts\add_session.py --paper 2501.12948
+```
+
+Attach any number of useful links using `Label|URL`:
+
+```powershell
+.venv\Scripts\python scripts\add_session.py --paper 2501.12948 --link "Discussion notes|https://example.com/notes" --link "Related dataset|https://example.com/dataset"
+```
+
+The date defaults to the next Monday. Use `--date YYYY-MM-DD` to update a specific Monday. Session plans are stored in `sessions.json` and should be committed with the weekly paper update.
+
+## Curate datasets
+
+Open dataset records live in `datasets.json`. Each record includes a category, modalities, maintainer, license summary, access caution, description, and official URL. Review the official dataset card and source-data terms before using any dataset; “open” annotations do not always mean every underlying image or webpage has identical rights.
 
 The importer scans only PDF files, recursively skips directories named `Ignore`, extracts embedded arXiv identifiers, fetches canonical metadata and abstracts directly from arXiv, checks for AI-related terms, and then categorizes the paper. Curated exceptions and non-paper exclusions live in `paper-overrides.json`. Additional directory names can be skipped with repeatable `--exclude-dir NAME` options.
 

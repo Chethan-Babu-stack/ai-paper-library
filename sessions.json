@@ -1,0 +1,19 @@
+{
+  "schedule": {
+    "weekday": "Monday",
+    "time": "16:00",
+    "timezone": "Europe/Berlin",
+    "durationMinutes": 60
+  },
+  "sessions": [
+    {
+      "id": "2026-09-21",
+      "date": "2026-09-21",
+      "title": "Weekly AI Paper Reading",
+      "paperIds": [],
+      "links": [],
+      "notes": "Choose the paper and add discussion links before the session."
+    }
+  ]
+}
+

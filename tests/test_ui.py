@@ -20,6 +20,18 @@ class UiTests(unittest.TestCase):
         self.assertEqual(len(data["papers"]), 40)
         self.assertTrue(all(paper.get("title") and paper.get("abstract") and paper.get("url") for paper in data["papers"]))
 
+    def test_dataset_catalog_has_required_fields(self):
+        data = json.loads((ROOT / "datasets.json").read_text(encoding="utf-8"))
+        self.assertEqual(len(data["datasets"]), 6)
+        required = {"id", "name", "category", "modalities", "license", "url", "accessNote"}
+        self.assertTrue(all(required <= dataset.keys() for dataset in data["datasets"]))
+
+    def test_sessions_follow_monday_schedule(self):
+        data = json.loads((ROOT / "sessions.json").read_text(encoding="utf-8"))
+        self.assertEqual(data["schedule"]["weekday"], "Monday")
+        self.assertEqual(data["schedule"]["time"], "16:00")
+        self.assertEqual(data["schedule"]["timezone"], "Europe/Berlin")
+
 
 if __name__ == "__main__":
     unittest.main()

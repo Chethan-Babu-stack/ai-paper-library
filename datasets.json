@@ -1,0 +1,71 @@
+{
+  "datasets": [
+    {
+      "id": "open-images-v7",
+      "name": "Open Images V7",
+      "category": "Images & Vision",
+      "modalities": ["Images", "Boxes", "Masks", "Relationships"],
+      "maintainedBy": "Google",
+      "license": "Annotations: CC BY 4.0; images: listed as CC BY 2.0",
+      "description": "Approximately nine million images with image-level labels, object boxes, segmentation masks, visual relationships, and localized narratives.",
+      "url": "https://storage.googleapis.com/openimages/web/index.html",
+      "accessNote": "Verify the license of each source image before reuse."
+    },
+    {
+      "id": "coco",
+      "name": "COCO",
+      "category": "Images & Vision",
+      "modalities": ["Images", "Boxes", "Masks", "Captions"],
+      "maintainedBy": "COCO Consortium",
+      "license": "Dataset terms and per-image Flickr licenses apply",
+      "description": "A standard benchmark for object detection, instance segmentation, keypoint detection, and image captioning in complex everyday scenes.",
+      "url": "https://cocodataset.org/",
+      "accessNote": "Review COCO terms and each source image license for the intended use."
+    },
+    {
+      "id": "docmatix",
+      "name": "Docmatix",
+      "category": "Multimodality",
+      "modalities": ["Documents", "Images", "Text", "Visual QA"],
+      "maintainedBy": "Hugging Face M4",
+      "license": "MIT",
+      "description": "A multimodal dataset for visual question answering over document images and PDFs, useful for document-understanding research.",
+      "url": "https://huggingface.co/datasets/HuggingFaceM4/Docmatix",
+      "accessNote": "Review the dataset card and source-document considerations before training."
+    },
+    {
+      "id": "fineweb",
+      "name": "FineWeb",
+      "category": "Text & Language",
+      "modalities": ["English text", "Web documents"],
+      "maintainedBy": "Hugging Face",
+      "license": "ODC-By 1.0; Common Crawl terms also apply",
+      "description": "A large cleaned and deduplicated English web corpus designed for language-model pretraining, with smaller samples available.",
+      "url": "https://huggingface.co/datasets/HuggingFaceFW/fineweb",
+      "accessNote": "The full corpus is very large; begin with a sample and review documented bias and content limitations."
+    },
+    {
+      "id": "common-voice",
+      "name": "Mozilla Common Voice",
+      "category": "Audio & Speech",
+      "modalities": ["Speech", "Transcripts", "Multilingual"],
+      "maintainedBy": "Mozilla Data Collective",
+      "license": "CC0 1.0",
+      "description": "Community-contributed multilingual speech datasets for automatic speech recognition and language research.",
+      "url": "https://commonvoice.mozilla.org/en/datasets",
+      "accessNote": "Dataset versions and available languages change over time; select the required release and locale."
+    },
+    {
+      "id": "librispeech",
+      "name": "LibriSpeech",
+      "category": "Audio & Speech",
+      "modalities": ["English speech", "Transcripts"],
+      "maintainedBy": "OpenSLR",
+      "license": "CC BY 4.0",
+      "description": "Approximately 1,000 hours of segmented 16 kHz English read speech derived from public-domain audiobooks.",
+      "url": "https://www.openslr.org/12",
+      "accessNote": "Multiple train, development, and test archives are available separately."
+    }
+  ]
+}
+

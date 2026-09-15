@@ -6,6 +6,9 @@
     <meta name="description" content="Chethan Babu's working library of AI research papers.">
     <meta name="theme-color" content="#f7f7f5">
     <title>AI Paper Library · Chethan Babu</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
     <script src="app.js" defer></script>
   </head>
@@ -24,7 +27,7 @@
           <kbd>/</kbd>
         </label>
 
-        <button class="primary-button" data-action="open-import" type="button">+ Weekly import</button>
+        <button class="primary-button" data-action="open-import" type="button">+ Plan Monday</button>
       </header>
 
       <aside class="sidebar" aria-label="Library navigation">
@@ -37,6 +40,8 @@
         <nav class="library-nav" aria-label="Library views">
           <p class="nav-heading">Library</p>
           <button class="nav-item active" data-view="all" type="button"><span>All papers</span><b id="all-count">0</b></button>
+          <button class="nav-item" data-view="datasets" type="button"><span>Open datasets</span><b id="dataset-count">0</b></button>
+          <button class="nav-item" data-view="sessions" type="button"><span>Monday sessions</span><b id="session-count">0</b></button>
           <button class="nav-item" data-view="due" type="button"><span>Review queue</span><b id="due-count">0</b></button>
           <button class="nav-item" data-view="starred" type="button"><span>Starred</span><b id="starred-count">0</b></button>
           <button class="nav-item" data-view="recent" type="button"><span>Read recently</span><b id="recent-count">0</b></button>
@@ -104,13 +109,19 @@
         </ol>
         <div class="command-box">
           <code id="import-command">.venv\Scripts\python scripts\import_papers.py "C:\Users\cheth\Desktop\papers"</code>
-          <button data-action="copy-command" type="button">Copy</button>
+          <button data-action="copy-command" data-copy-target="import-command" type="button">Copy</button>
         </div>
         <p class="dialog-note">The importer merges duplicate arXiv papers and preserves existing catalog entries.</p>
+        <h3>Plan a Monday session</h3>
+        <p>Add papers by arXiv ID and attach any useful webpage, slides, notes, code, or dataset link.</p>
+        <div class="command-box">
+          <code id="session-command">.venv\Scripts\python scripts\add_session.py --paper 2501.12948 --link "Discussion notes|https://example.com/notes"</code>
+          <button data-action="copy-command" data-copy-target="session-command" type="button">Copy</button>
+        </div>
+        <p class="dialog-note">The date defaults to the next Monday. Use <code>--date YYYY-MM-DD</code> to edit another week.</p>
       </form>
     </dialog>
 
     <div id="toast" class="toast" role="status" aria-live="polite"></div>
   </body>
 </html>
-
