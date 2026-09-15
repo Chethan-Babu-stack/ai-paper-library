@@ -1,5 +1,6 @@
 const STORAGE_KEY = "chethan-ai-library-progress-v1";
 const PROPOSAL_EMAIL = "chethan1512@gmail.com";
+const DATA_VERSION = "20260915.1";
 const VIEW_LABELS = {
   all: "All papers",
   datasets: "Open datasets",
@@ -524,7 +525,7 @@ document.querySelector("#join-form").addEventListener("submit", (event) => {
   prepareJoinRequestEmail(event.currentTarget);
 });
 
-Promise.all(["papers.json", "datasets.json", "sessions.json"].map((url) => fetch(url).then((response) => {
+Promise.all(["papers.json", "datasets.json", "sessions.json"].map((url) => fetch(`${url}?v=${DATA_VERSION}`).then((response) => {
   if (!response.ok) throw new Error(`Could not load ${url} (${response.status})`);
   return response.json();
 })))

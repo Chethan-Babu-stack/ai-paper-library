@@ -41,6 +41,13 @@ class UiTests(unittest.TestCase):
         self.assertIn("prepareJoinRequestEmail", javascript)
         self.assertIn("Request to join paper reading group", javascript)
 
+    def test_deployed_assets_are_cache_busted(self):
+        html = (ROOT / "index.html").read_text(encoding="utf-8")
+        javascript = (ROOT / "app.js").read_text(encoding="utf-8")
+        self.assertRegex(html, r'href="styles\.css\?v=[^"]+"')
+        self.assertRegex(html, r'src="app\.js\?v=[^"]+"')
+        self.assertIn("?v=${DATA_VERSION}", javascript)
+
     def test_catalog_has_complete_papers(self):
         data = json.loads((ROOT / "papers.json").read_text(encoding="utf-8"))
         self.assertEqual(len(data["papers"]), 43)
