@@ -32,6 +32,15 @@ class UiTests(unittest.TestCase):
         self.assertIn('const PROPOSAL_EMAIL = "chethan1512@gmail.com"', javascript)
         self.assertIn("mailto:${PROPOSAL_EMAIL}", javascript)
 
+    def test_join_group_prepares_email_request(self):
+        html = (ROOT / "index.html").read_text(encoding="utf-8")
+        javascript = (ROOT / "app.js").read_text(encoding="utf-8")
+        self.assertIn('data-action="open-join"', html)
+        self.assertIn('id="join-form"', html)
+        self.assertIn('name="email" type="email"', html)
+        self.assertIn("prepareJoinRequestEmail", javascript)
+        self.assertIn("Request to join paper reading group", javascript)
+
     def test_catalog_has_complete_papers(self):
         data = json.loads((ROOT / "papers.json").read_text(encoding="utf-8"))
         self.assertEqual(len(data["papers"]), 43)

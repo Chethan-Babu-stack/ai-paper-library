@@ -47,6 +47,7 @@ The catalog currently contains **40 completed papers** imported recursively from
 - Select a paper to read its full abstract, open arXiv, or add private notes.
 - Notes and stars stay in browser storage. Use **Export progress** and **Restore progress** to move or back them up.
 - Use **Propose paper** to prepare an email suggestion addressed to `chethan1512@gmail.com`. The static site opens the visitor's default email application; it does not send mail without their confirmation.
+- Use **Join group** to prepare a membership request with the visitor's name, contact email, affiliation, and research interests.
 
 Use the same local port (`8000`) consistently because browser storage is tied to the site address. Local progress can be exported before moving to a published GitHub Pages URL.
 

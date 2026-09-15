@@ -101,7 +101,7 @@ kbd { color: var(--text-faint); background: white; border: 1px solid var(--borde
   font-weight: 650;
 }
 .primary-button { color: white; background: var(--accent); border: 1px solid var(--accent); }
-.topbar > .primary-button { justify-self: end; }
+.header-actions { display: flex; justify-self: end; gap: 8px; }
 .primary-button:hover { background: var(--accent-hover); }
 .secondary-button { color: var(--text); background: white; border: 1px solid var(--border-strong); }
 .secondary-button:hover { background: var(--surface-muted); }
@@ -333,7 +333,8 @@ kbd { color: var(--text-faint); background: white; border: 1px solid var(--borde
   .topbar { position: sticky; top: 0; display: grid; grid-template-columns: 1fr auto; gap: 10px; height: auto; padding: 10px 14px; }
   .identity small, .identity-mark, .global-search kbd { display: none; }
   .global-search { grid-column: 1 / -1; grid-row: 2; }
-  .topbar > .primary-button { grid-column: 2; grid-row: 1; }
+  .header-actions { grid-column: 2; grid-row: 1; }
+  .header-actions button { padding-inline: 9px; font-size: 12px; }
   .sidebar { position: static; display: block; overflow: visible; padding: 12px 14px; border: 0; border-bottom: 1px solid var(--border); }
   .library-summary, .sidebar-tools { display: none; }
   .library-nav, .topic-nav { display: flex; gap: 6px; overflow-x: auto; padding: 0 0 7px; }

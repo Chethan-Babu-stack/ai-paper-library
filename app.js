@@ -366,6 +366,31 @@ function prepareProposalEmail(form) {
   window.location.href = mailto;
 }
 
+function prepareJoinRequestEmail(form) {
+  const formData = new FormData(form);
+  const name = String(formData.get("name") || "").trim();
+  const email = String(formData.get("email") || "").trim();
+  const affiliation = String(formData.get("affiliation") || "").trim();
+  const interests = String(formData.get("interests") || "").trim();
+  const body = [
+    "Hi Chethan,",
+    "",
+    "I would like to join the Monday paper reading group.",
+    "",
+    `Name: ${name}`,
+    `Contact email: ${email}`,
+    ...(affiliation ? [`Affiliation: ${affiliation}`] : []),
+    "",
+    "Research interests:",
+    interests,
+  ].join("\n");
+  const mailto = `mailto:${PROPOSAL_EMAIL}?subject=${encodeURIComponent(`Request to join paper reading group: ${name}`)}&body=${encodeURIComponent(body)}`;
+  document.querySelector("#join-dialog").close();
+  form.reset();
+  showToast("Opening your email app…");
+  window.location.href = mailto;
+}
+
 function exportProgress() {
   const payload = JSON.stringify({ exportedAt: new Date().toISOString(), progress: state.progress }, null, 2);
   const url = URL.createObjectURL(new Blob([payload], { type: "application/json" }));
@@ -420,6 +445,8 @@ document.addEventListener("click", async (event) => {
     if (action.dataset.action === "open-import") document.querySelector("#import-dialog").showModal();
     if (action.dataset.action === "open-proposal") document.querySelector("#proposal-dialog").showModal();
     if (action.dataset.action === "close-proposal") document.querySelector("#proposal-dialog").close();
+    if (action.dataset.action === "open-join") document.querySelector("#join-dialog").showModal();
+    if (action.dataset.action === "close-join") document.querySelector("#join-dialog").close();
     if (action.dataset.action === "copy-command") {
       await navigator.clipboard.writeText(document.querySelector(`#${action.dataset.copyTarget}`).textContent);
       showToast("Command copied.");
@@ -490,6 +517,11 @@ document.querySelector("#progress-file").addEventListener("change", (event) => {
 document.querySelector("#proposal-form").addEventListener("submit", (event) => {
   event.preventDefault();
   prepareProposalEmail(event.currentTarget);
+});
+
+document.querySelector("#join-form").addEventListener("submit", (event) => {
+  event.preventDefault();
+  prepareJoinRequestEmail(event.currentTarget);
 });
 
 Promise.all(["papers.json", "datasets.json", "sessions.json"].map((url) => fetch(url).then((response) => {
