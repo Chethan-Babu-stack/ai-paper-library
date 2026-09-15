@@ -33,6 +33,22 @@ class UiTests(unittest.TestCase):
         self.assertIn("patch-n-pack-navit-a-vision-transformer-for-any-aspect-ratio-and-resolution", session["paperIds"])
         self.assertIn("resformer-scaling-vits-with-multi-resolution-training", session["paperIds"])
 
+    def test_recent_monday_history(self):
+        sessions = json.loads((ROOT / "sessions.json").read_text(encoding="utf-8"))["sessions"]
+        papers_by_date = {session["date"]: session["paperIds"] for session in sessions}
+        self.assertEqual(
+            papers_by_date["2026-09-14"],
+            ["siglip-2-multilingual-vision-language-encoders-with-improved-semantic-understand"],
+        )
+        self.assertEqual(
+            papers_by_date["2026-09-07"],
+            ["qwen2-vl-enhancing-vision-language-model-s-perception-of-the-world-at-any-resolu"],
+        )
+        self.assertEqual(
+            papers_by_date["2026-08-31"],
+            ["adarope-not-all-attention-heads-should-rotate-and-scale-equally"],
+        )
+
     def test_dataset_catalog_has_required_fields(self):
         data = json.loads((ROOT / "datasets.json").read_text(encoding="utf-8"))
         self.assertEqual(len(data["datasets"]), 6)

@@ -30,6 +30,36 @@
         }
       ],
       "notes": "Compare three approaches to resolution flexibility: variable patch size (FlexiViT), native resolution and aspect ratio with sequence packing (NaViT), and multi-resolution training with scale-consistent representations (ResFormer)."
+    },
+    {
+      "id": "2026-09-14",
+      "date": "2026-09-14",
+      "title": "SigLIP 2",
+      "paperIds": [
+        "siglip-2-multilingual-vision-language-encoders-with-improved-semantic-understand"
+      ],
+      "links": [],
+      "notes": ""
+    },
+    {
+      "id": "2026-09-07",
+      "date": "2026-09-07",
+      "title": "Qwen2-VL",
+      "paperIds": [
+        "qwen2-vl-enhancing-vision-language-model-s-perception-of-the-world-at-any-resolu"
+      ],
+      "links": [],
+      "notes": ""
+    },
+    {
+      "id": "2026-08-31",
+      "date": "2026-08-31",
+      "title": "AdaRoPE",
+      "paperIds": [
+        "adarope-not-all-attention-heads-should-rotate-and-scale-equally"
+      ],
+      "links": [],
+      "notes": ""
     }
   ]
 }
