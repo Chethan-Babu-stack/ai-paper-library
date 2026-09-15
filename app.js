@@ -1,10 +1,8 @@
 const STORAGE_KEY = "chethan-ai-library-progress-v1";
-const REVIEW_INTERVALS = [30, 90, 180, 365];
 const VIEW_LABELS = {
   all: "All papers",
   datasets: "Open datasets",
   sessions: "Monday sessions",
-  due: "Review queue",
   starred: "Starred papers",
   recent: "Read recently",
 };
@@ -41,7 +39,7 @@ function saveProgress() {
 }
 
 function progressFor(paperId) {
-  return state.progress[paperId] || { starred: false, reviewCount: 0, lastReviewed: null, notes: "" };
+  return state.progress[paperId] || { starred: false, notes: "" };
 }
 
 function parseDate(value) {
@@ -53,18 +51,6 @@ function parseDate(value) {
 function formatDate(value) {
   const date = value instanceof Date ? value : parseDate(value);
   return date ? new Intl.DateTimeFormat("en", { day: "numeric", month: "short", year: "numeric" }).format(date) : "Not recorded";
-}
-
-function reviewInfo(paper) {
-  const progress = progressFor(paper.id);
-  const baseDate = parseDate(progress.lastReviewed) || parseDate(paper.dateRead) || new Date();
-  const interval = REVIEW_INTERVALS[Math.min(progress.reviewCount || 0, REVIEW_INTERVALS.length - 1)];
-  const dueDate = new Date(baseDate);
-  dueDate.setDate(dueDate.getDate() + interval);
-  const days = Math.ceil((dueDate - new Date()) / 86400000);
-  let label = `Review from ${formatDate(dueDate)}`;
-  if (days <= 0) label = "Ready for review";
-  return { dueDate, days, isDue: days <= 0, label, interval };
 }
 
 function isRecent(paper) {
@@ -81,7 +67,6 @@ function filteredPapers() {
     const matchesSearch = !query || searchable.includes(query);
     const matchesTopic = !state.topic || paper.category === state.topic;
     const matchesView = state.view === "all"
-      || (state.view === "due" && reviewInfo(paper).isDue)
       || (state.view === "starred" && progress.starred)
       || (state.view === "recent" && isRecent(paper));
     return matchesSearch && matchesTopic && matchesView;
@@ -90,7 +75,6 @@ function filteredPapers() {
   return visible.sort((left, right) => {
     if (state.sort === "publication-desc") return (right.year || 0) - (left.year || 0) || left.title.localeCompare(right.title);
     if (state.sort === "title-asc") return left.title.localeCompare(right.title);
-    if (state.sort === "review-due") return reviewInfo(left).dueDate - reviewInfo(right).dueDate;
     return (parseDate(right.dateRead) || 0) - (parseDate(left.dateRead) || 0) || left.title.localeCompare(right.title);
   });
 }
@@ -109,7 +93,6 @@ function detailAuthorSummary(authors) {
 
 function renderSidebar() {
   const topics = [...new Set(state.papers.map((paper) => paper.category))].sort();
-  const due = state.papers.filter((paper) => reviewInfo(paper).isDue).length;
   const starred = state.papers.filter((paper) => progressFor(paper.id).starred).length;
   const recent = state.papers.filter(isRecent).length;
   document.querySelector("#library-total").textContent = `${state.papers.length} papers`;
@@ -117,7 +100,6 @@ function renderSidebar() {
   document.querySelector("#all-count").textContent = state.papers.length;
   document.querySelector("#dataset-count").textContent = state.datasets.length;
   document.querySelector("#session-count").textContent = state.sessionsData.sessions.length;
-  document.querySelector("#due-count").textContent = due;
   document.querySelector("#starred-count").textContent = starred;
   document.querySelector("#recent-count").textContent = recent;
   document.querySelectorAll("[data-view]").forEach((button) => button.classList.toggle("active", button.dataset.view === state.view && !state.topic));
@@ -250,7 +232,6 @@ function renderSessionDetail() {
 
 function paperRow(paper) {
   const progress = progressFor(paper.id);
-  const review = reviewInfo(paper);
   return `<article class="paper-row${state.selectedId === paper.id ? " selected" : ""}" data-paper-id="${escapeHtml(paper.id)}" tabindex="0" role="button" aria-label="View ${escapeHtml(paper.title)}">
     <div class="paper-main">
       <div class="paper-title-line">
@@ -259,7 +240,7 @@ function paperRow(paper) {
       </div>
       <p class="paper-authors">${escapeHtml(authorSummary(paper.authors))}</p>
       <p class="paper-excerpt">${escapeHtml(paper.abstract)}</p>
-      <div class="row-flags"><span class="status-pill">✓ Read</span>${review.isDue ? `<span class="review-pill">${escapeHtml(review.label)}</span>` : ""}</div>
+      <div class="row-flags"><span class="status-pill">✓ Read</span></div>
     </div>
     <span class="paper-topic">${escapeHtml(paper.category)}</span>
     <span class="paper-year">${escapeHtml(paper.year)}</span>
@@ -296,12 +277,11 @@ function renderDetail() {
   const paper = state.papers.find((item) => item.id === state.selectedId);
   const panel = document.querySelector("#paper-detail");
   if (!paper) {
-    panel.innerHTML = `<div class="detail-placeholder"><span aria-hidden="true">↖</span><p>Select a paper to view its abstract and review notes.</p></div>`;
+    panel.innerHTML = `<div class="detail-placeholder"><span aria-hidden="true">↖</span><p>Select a paper to view its abstract and notes.</p></div>`;
     return;
   }
 
   const progress = progressFor(paper.id);
-  const review = reviewInfo(paper);
   panel.innerHTML = `<div class="detail-content">
     <div class="detail-topline"><span class="detail-label">Paper details</span><button class="mobile-close" data-action="close-detail" type="button" aria-label="Close details">×</button></div>
     <h2>${escapeHtml(paper.title)}</h2>
@@ -315,14 +295,6 @@ function renderDetail() {
     <section class="detail-section">
       <h3>Abstract</h3>
       <p class="abstract-text">${escapeHtml(paper.abstract)}</p>
-    </section>
-    <section class="detail-section">
-      <h3>Revision</h3>
-      <div class="review-box">
-        <strong>${escapeHtml(review.label)}</strong>
-        <p>${progress.lastReviewed ? `Last reviewed ${formatDate(progress.lastReviewed)} · ${progress.reviewCount} reviews` : `Read ${formatDate(paper.dateRead)} · first revision after ${review.interval} days`}</p>
-        <button class="review-button" data-action="mark-reviewed" data-paper-id="${escapeHtml(paper.id)}" type="button">Mark reviewed today</button>
-      </div>
     </section>
     <section class="detail-section">
       <h3>My notes</h3>
@@ -360,17 +332,6 @@ function toggleStar(paperId) {
   saveProgress();
   renderSidebar();
   renderList();
-}
-
-function markReviewed(paperId) {
-  const progress = { ...progressFor(paperId) };
-  progress.reviewCount = (progress.reviewCount || 0) + 1;
-  progress.lastReviewed = new Date().toISOString().slice(0, 10);
-  state.progress[paperId] = progress;
-  saveProgress();
-  renderSidebar();
-  renderList();
-  showToast("Review recorded. Next revision scheduled.");
 }
 
 function showToast(message) {
@@ -432,7 +393,6 @@ document.addEventListener("click", async (event) => {
   if (action) {
     const paperId = action.dataset.paperId;
     if (action.dataset.action === "toggle-star") toggleStar(paperId);
-    if (action.dataset.action === "mark-reviewed") markReviewed(paperId);
     if (action.dataset.action === "open-import") document.querySelector("#import-dialog").showModal();
     if (action.dataset.action === "copy-command") {
       await navigator.clipboard.writeText(document.querySelector(`#${action.dataset.copyTarget}`).textContent);

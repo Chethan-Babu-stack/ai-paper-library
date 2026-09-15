@@ -15,6 +15,11 @@ class UiTests(unittest.TestCase):
         referenced_ids = set(re.findall(r'querySelector\("#([A-Za-z0-9_-]+)"\)', javascript))
         self.assertEqual(referenced_ids - element_ids, set())
 
+    def test_no_automatic_paper_review_schedule(self):
+        source = "\n".join((ROOT / name).read_text(encoding="utf-8") for name in ("index.html", "app.js"))
+        for phrase in ("ready for review", "review queue", "review due", "mark reviewed", "review_interval"):
+            self.assertNotIn(phrase, source.lower())
+
     def test_catalog_has_forty_complete_papers(self):
         data = json.loads((ROOT / "papers.json").read_text(encoding="utf-8"))
         self.assertEqual(len(data["papers"]), 40)

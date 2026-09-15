@@ -204,9 +204,8 @@ kbd { color: var(--text-faint); background: white; border: 1px solid var(--borde
 .paper-authors { margin: 3px 0 0; color: var(--text-soft); font-size: 13px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .paper-excerpt { margin: 7px 0 0; color: var(--text-soft); font-size: 13px; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
 .row-flags { display: flex; align-items: center; gap: 6px; margin-top: 9px; }
-.status-pill, .review-pill { border-radius: 99px; padding: 2px 7px; font-size: 11px; font-weight: 700; }
+.status-pill { border-radius: 99px; padding: 2px 7px; font-size: 11px; font-weight: 700; }
 .status-pill { color: var(--accent-hover); background: var(--accent-soft); }
-.review-pill { color: var(--warning); background: var(--warning-soft); }
 .paper-topic, .paper-year { align-self: start; color: var(--text-soft); font-size: 12px; padding-top: 2px; }
 .paper-topic { overflow-wrap: anywhere; }
 
@@ -240,8 +239,6 @@ kbd { color: var(--text-faint); background: white; border: 1px solid var(--borde
 .review-box { padding: 13px; background: var(--surface-muted); border-radius: var(--radius); }
 .review-box strong { display: block; font-size: 14px; }
 .review-box p { margin: 3px 0 11px; color: var(--text-soft); font-size: 12px; }
-.review-button { width: 100%; color: var(--accent-hover); background: white; border: 1px solid var(--border-strong); border-radius: 5px; padding: 7px 9px; font-weight: 650; }
-.review-button:hover { border-color: var(--accent); }
 .notes-area { width: 100%; min-height: 120px; resize: vertical; color: var(--text); background: white; border: 1px solid var(--border); border-radius: var(--radius); padding: 10px; line-height: 1.5; }
 .notes-help { display: flex; justify-content: space-between; margin-top: 5px; color: var(--text-faint); font-size: 11px; }
 

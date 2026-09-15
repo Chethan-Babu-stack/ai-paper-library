@@ -42,7 +42,6 @@
           <button class="nav-item active" data-view="all" type="button"><span>All papers</span><b id="all-count">0</b></button>
           <button class="nav-item" data-view="datasets" type="button"><span>Open datasets</span><b id="dataset-count">0</b></button>
           <button class="nav-item" data-view="sessions" type="button"><span>Monday sessions</span><b id="session-count">0</b></button>
-          <button class="nav-item" data-view="due" type="button"><span>Review queue</span><b id="due-count">0</b></button>
           <button class="nav-item" data-view="starred" type="button"><span>Starred</span><b id="starred-count">0</b></button>
           <button class="nav-item" data-view="recent" type="button"><span>Read recently</span><b id="recent-count">0</b></button>
         </nav>
@@ -53,7 +52,7 @@
         </nav>
 
         <div class="sidebar-tools">
-          <p>Notes and review history are stored in this browser.</p>
+          <p>Notes and starred papers are stored in this browser.</p>
           <button class="text-button" data-action="export-progress" type="button">Export progress</button>
           <label class="text-button file-button">Restore progress<input id="progress-file" type="file" accept="application/json"></label>
         </div>
@@ -71,7 +70,6 @@
               <option value="read-desc">Recently read</option>
               <option value="publication-desc">Newest publication</option>
               <option value="title-asc">Title A–Z</option>
-              <option value="review-due">Review due</option>
             </select>
           </label>
         </header>
@@ -91,7 +89,7 @@
         <div id="paper-detail" class="paper-detail">
           <div class="detail-placeholder">
             <span aria-hidden="true">↖</span>
-            <p>Select a paper to view its abstract and review notes.</p>
+            <p>Select a paper to view its abstract and notes.</p>
           </div>
         </div>
       </aside>

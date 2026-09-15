@@ -1,6 +1,6 @@
 # Chethan's AI Paper Library
 
-A local-first research hub maintained by **Chethan Babu**. It tracks AI papers, revision progress, open datasets, and Monday reading sessions with their supporting links.
+A local-first research hub maintained by **Chethan Babu**. It tracks AI papers, personal notes, open datasets, and Monday reading sessions with their supporting links.
 
 The source PDFs remain local. Only titles, authors, abstracts, links, categories, and reading status are published.
 
@@ -40,13 +40,12 @@ The catalog currently contains **40 unique AI research papers** imported recursi
 
 ## Use the research workspace
 
-- Use the left pane for review queues, starred papers, recent reading, and topic collections.
+- Use the left pane for starred papers, recent reading, and topic collections.
 - Open **Open datasets** to browse curated datasets by area, modality, maintainer, and license.
 - Open **Monday sessions** to plan the weekly 16:00 Europe/Berlin reading event.
 - Press `/` to focus search, then search across titles, authors, abstracts, and topics.
-- Select a paper to read its full abstract, open arXiv, add private notes, or mark a revision complete.
-- Optional review intervals progress from 30 to 90, 180, and 365 days as reviews are completed; papers are simply shown as “Ready for review” when they return to the queue.
-- Notes, stars, and review history stay in browser storage. Use **Export progress** and **Restore progress** to move or back them up.
+- Select a paper to read its full abstract, open arXiv, or add private notes.
+- Notes and stars stay in browser storage. Use **Export progress** and **Restore progress** to move or back them up.
 
 Use the same local port (`8000`) consistently because browser storage is tied to the site address. Local progress can be exported before moving to a published GitHub Pages URL.
 
