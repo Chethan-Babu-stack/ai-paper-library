@@ -1,0 +1,15 @@
+# Source papers stay local; publish metadata and links only.
+inbox/*.pdf
+inbox/**/*.pdf
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+
+# Local/editor files
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+

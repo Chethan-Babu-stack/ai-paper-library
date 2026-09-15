@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Chethan Babu's curated reading collection of AI research papers.">
+    <title>Chethan's AI Paper Library</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Literata:opsz,wght@7..72,600;7..72,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <script src="app.js" defer></script>
+  </head>
+  <body>
+    <header class="hero">
+      <nav class="nav" aria-label="Primary navigation">
+        <a class="brand" href="#">CB / AI Library</a>
+        <a class="nav-link" href="https://github.com/" target="_blank" rel="noreferrer">Repository <span aria-hidden="true">↗</span></a>
+      </nav>
+      <div class="hero-content">
+        <p class="eyebrow">Research journal · 2024–present</p>
+        <h1>Papers worth<br><em>remembering.</em></h1>
+        <p class="intro">A personal, searchable collection of artificial intelligence research read by Chethan Babu.</p>
+        <div class="stats" aria-label="Library statistics">
+          <div><strong id="paper-count">0</strong><span>Papers read</span></div>
+          <div><strong id="category-count">0</strong><span>Topics</span></div>
+          <div><strong id="year-range">—</strong><span>Years covered</span></div>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <section class="controls" aria-label="Filter papers">
+        <label class="search">
+          <span class="sr-only">Search papers</span>
+          <svg aria-hidden="true" viewBox="0 0 24 24"><path d="m21 21-4.35-4.35m2.35-5.65a8 8 0 1 1-16 0 8 8 0 0 1 16 0Z"/></svg>
+          <input id="search" type="search" placeholder="Search titles, authors, or abstracts…" autocomplete="off">
+        </label>
+        <div id="filters" class="filters" role="group" aria-label="Paper categories"></div>
+      </section>
+
+      <section id="library" class="library" aria-live="polite"></section>
+
+      <section id="empty-state" class="empty-state" hidden>
+        <span class="empty-mark">∅</span>
+        <h2>No papers here yet</h2>
+        <p>Place AI paper PDFs in <code>inbox/</code>, then run the importer described in the README.</p>
+      </section>
+    </main>
+
+    <footer>
+      <p>Curated by Chethan Babu.</p>
+      <p>Abstracts and paper links belong to their respective authors and publishers.</p>
+    </footer>
+  </body>
+</html>
+
