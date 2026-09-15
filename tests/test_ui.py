@@ -48,6 +48,13 @@ class UiTests(unittest.TestCase):
         self.assertRegex(html, r'src="app\.js\?v=[^"]+"')
         self.assertIn("?v=${DATA_VERSION}", javascript)
 
+    def test_public_branding_names_both_maintainers(self):
+        html = (ROOT / "index.html").read_text(encoding="utf-8")
+        readme = (ROOT / "README.md").read_text(encoding="utf-8")
+        self.assertIn("Lalith &amp; Chethan", html)
+        self.assertIn("Lalith & Chethan", readme)
+        self.assertNotIn("Chethan Babu", html)
+
     def test_catalog_has_complete_papers(self):
         data = json.loads((ROOT / "papers.json").read_text(encoding="utf-8"))
         self.assertEqual(len(data["papers"]), 43)

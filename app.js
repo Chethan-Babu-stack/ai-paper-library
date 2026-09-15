@@ -1,6 +1,6 @@
 const STORAGE_KEY = "chethan-ai-library-progress-v1";
 const PROPOSAL_EMAIL = "chethan1512@gmail.com";
-const DATA_VERSION = "20260915.1";
+const DATA_VERSION = "20260915.2";
 const VIEW_LABELS = {
   all: "All papers",
   datasets: "Open datasets",
@@ -352,7 +352,7 @@ function prepareProposalEmail(form) {
   const url = String(formData.get("url") || "").trim();
   const reason = String(formData.get("reason") || "").trim();
   const body = [
-    "Hi Chethan,",
+    "Hi Lalith and Chethan,",
     "",
     "I would like to propose this paper for the journal club:",
     "",
@@ -374,7 +374,7 @@ function prepareJoinRequestEmail(form) {
   const affiliation = String(formData.get("affiliation") || "").trim();
   const interests = String(formData.get("interests") || "").trim();
   const body = [
-    "Hi Chethan,",
+    "Hi Lalith and Chethan,",
     "",
     "I would like to join the Monday paper reading group.",
     "",

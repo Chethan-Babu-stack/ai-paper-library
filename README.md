@@ -1,6 +1,6 @@
-# Chethan's AI Paper Library
+# Lalith & Chethan's AI Paper Library
 
-A local-first research hub maintained by **Chethan Babu**. It tracks AI papers, personal notes, open datasets, and Monday reading sessions with their supporting links.
+A local-first research hub maintained by **Lalith & Chethan**. It tracks AI papers, personal notes, open datasets, and Monday reading sessions with their supporting links.
 
 The source PDFs remain local. Only titles, authors, abstracts, links, categories, and reading status are published.
 

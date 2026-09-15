@@ -158,7 +158,7 @@ def arxiv_lookup(arxiv_id: str) -> dict:
     for url_template in (ARXIV_URL, ARXIV_FALLBACK_URL):
         request = urllib.request.Request(
             url_template.format(arxiv_id),
-            headers={"User-Agent": "Chethan-AI-Paper-Library/1.0 (mailto:chethan1512@gmail.com)"},
+            headers={"User-Agent": "Lalith-Chethan-AI-Paper-Library/1.0 (mailto:chethan1512@gmail.com)"},
         )
         try:
             with urllib.request.urlopen(request, timeout=20) as response:
