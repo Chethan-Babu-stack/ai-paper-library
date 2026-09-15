@@ -55,10 +55,13 @@ class UiTests(unittest.TestCase):
         self.assertIn("Lalith & Chethan", readme)
         self.assertNotIn("Chethan Babu", html)
 
-    def test_journal_club_wordmark(self):
+    def test_multimodal_logo_asset(self):
         html = (ROOT / "index.html").read_text(encoding="utf-8")
-        self.assertIn('<span class="identity-mark" aria-hidden="true">Journal Club</span>', html)
-        self.assertNotIn('<span class="identity-mark" aria-hidden="true">JC</span>', html)
+        logo = ROOT / "assets" / "multimodal-ai-logo.png"
+        self.assertTrue(logo.exists())
+        self.assertEqual(logo.read_bytes()[:8], b"\x89PNG\r\n\x1a\n")
+        self.assertIn('class="identity-logo"', html)
+        self.assertIn('src="assets/multimodal-ai-logo.png?v=', html)
 
     def test_catalog_has_complete_papers(self):
         data = json.loads((ROOT / "papers.json").read_text(encoding="utf-8"))

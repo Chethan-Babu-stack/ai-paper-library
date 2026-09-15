@@ -63,20 +63,8 @@ button:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-
   color: inherit;
   text-decoration: none;
 }
-.identity-mark {
-  width: auto;
-  height: 32px;
-  padding: 0 10px;
-  display: grid;
-  place-items: center;
-  color: white;
-  background: var(--accent);
-  border-radius: 5px;
-  font-size: 11px;
-  font-weight: 750;
-  letter-spacing: .04em;
-  white-space: nowrap;
-}
+.identity-logo { width: 44px; height: 44px; flex: 0 0 auto; overflow: hidden; background: white; border-radius: 9px; }
+.identity-logo img { width: 140%; height: 140%; max-width: none; display: block; transform: translate(-14%, -3%); }
 .identity > span:last-child { display: grid; line-height: 1.25; }
 .identity strong { font-size: 14px; }
 .identity small { color: var(--text-faint); font-size: 12px; }
@@ -333,7 +321,8 @@ kbd { color: var(--text-faint); background: white; border: 1px solid var(--borde
   body { overflow: auto; }
   .app-shell { height: auto; min-height: 100vh; display: block; }
   .topbar { position: sticky; top: 0; display: grid; grid-template-columns: 1fr auto; gap: 10px; height: auto; padding: 10px 14px; }
-  .identity small, .identity-mark, .global-search kbd { display: none; }
+  .identity > span:last-child, .global-search kbd { display: none; }
+  .identity-logo { width: 38px; height: 38px; }
   .global-search { grid-column: 1 / -1; grid-row: 2; }
   .header-actions { grid-column: 2; grid-row: 1; }
   .header-actions button { padding-inline: 9px; font-size: 12px; }
