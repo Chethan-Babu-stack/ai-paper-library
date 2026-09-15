@@ -38,6 +38,16 @@ The catalog currently contains **40 unique AI research papers** imported recursi
 
    Open `http://localhost:8000`.
 
+## Use the research workspace
+
+- Use the left pane for review queues, starred papers, recent reading, and topic collections.
+- Press `/` to focus search, then search across titles, authors, abstracts, and topics.
+- Select a paper to read its full abstract, open arXiv, add private notes, or mark a revision complete.
+- Review intervals progress from 30 to 90, 180, and 365 days as reviews are completed.
+- Notes, stars, and review history stay in browser storage. Use **Export progress** and **Restore progress** to move or back them up.
+
+Use the same local port (`8000`) consistently because browser storage is tied to the site address. Local progress can be exported before moving to a published GitHub Pages URL.
+
 The importer scans only PDF files, recursively skips directories named `Ignore`, extracts embedded arXiv identifiers, fetches canonical metadata and abstracts directly from arXiv, checks for AI-related terms, and then categorizes the paper. Curated exceptions and non-paper exclusions live in `paper-overrides.json`. Additional directory names can be skipped with repeatable `--exclude-dir NAME` options.
 
 ## Categories
