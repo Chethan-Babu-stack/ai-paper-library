@@ -232,6 +232,7 @@ function renderSessionDetail() {
 
 function paperRow(paper) {
   const progress = progressFor(paper.id);
+  const isPlanned = paper.status === "Planned";
   return `<article class="paper-row${state.selectedId === paper.id ? " selected" : ""}" data-paper-id="${escapeHtml(paper.id)}" tabindex="0" role="button" aria-label="View ${escapeHtml(paper.title)}">
     <div class="paper-main">
       <div class="paper-title-line">
@@ -240,7 +241,7 @@ function paperRow(paper) {
       </div>
       <p class="paper-authors">${escapeHtml(authorSummary(paper.authors))}</p>
       <p class="paper-excerpt">${escapeHtml(paper.abstract)}</p>
-      <div class="row-flags"><span class="status-pill">✓ Read</span></div>
+      <div class="row-flags"><span class="status-pill${isPlanned ? " planned" : ""}">${isPlanned ? "Planned" : "✓ Read"}</span></div>
     </div>
     <span class="paper-topic">${escapeHtml(paper.category)}</span>
     <span class="paper-year">${escapeHtml(paper.year)}</span>
@@ -282,12 +283,13 @@ function renderDetail() {
   }
 
   const progress = progressFor(paper.id);
+  const readingStatus = paper.status === "Planned" ? "Planned" : `Read ${formatDate(paper.dateRead)}`;
   panel.innerHTML = `<div class="detail-content">
     <div class="detail-topline"><span class="detail-label">Paper details</span><button class="mobile-close" data-action="close-detail" type="button" aria-label="Close details">×</button></div>
     <h2>${escapeHtml(paper.title)}</h2>
     <p class="detail-authors">${escapeHtml(detailAuthorSummary(paper.authors))}</p>
     ${(paper.authors || []).length > 8 ? `<details class="all-authors"><summary>Show all ${paper.authors.length} authors</summary><p>${escapeHtml(paper.authors.join(", "))}</p></details>` : ""}
-    <div class="detail-meta"><span>${escapeHtml(paper.category)}</span><span>${escapeHtml(paper.year)}</span><span>Read ${escapeHtml(formatDate(paper.dateRead))}</span><span>arXiv:${escapeHtml(paper.arxivId || "—")}</span></div>
+    <div class="detail-meta"><span>${escapeHtml(paper.category)}</span><span>${escapeHtml(paper.year)}</span><span>${escapeHtml(readingStatus)}</span><span>arXiv:${escapeHtml(paper.arxivId || "—")}</span></div>
     <div class="paper-actions">
       <a class="open-paper" href="${escapeHtml(paper.url)}" target="_blank" rel="noreferrer">Open paper ↗</a>
       <button class="detail-star" data-action="toggle-star" data-paper-id="${escapeHtml(paper.id)}" type="button">${progress.starred ? "★ Starred" : "☆ Star"}</button>

@@ -1022,6 +1022,76 @@
       "status": "Done",
       "dateRead": "2026-02-25",
       "arxivId": "1902.00751"
+    },
+    {
+      "id": "flexivit-one-model-for-all-patch-sizes",
+      "title": "FlexiViT: One Model for All Patch Sizes",
+      "authors": [
+        "Lucas Beyer",
+        "Pavel Izmailov",
+        "Alexander Kolesnikov",
+        "Mathilde Caron",
+        "Simon Kornblith",
+        "Xiaohua Zhai",
+        "Matthias Minderer",
+        "Michael Tschannen",
+        "Ibrahim Alabdulmohsin",
+        "Filip Pavetic"
+      ],
+      "year": 2022,
+      "category": "Images & Vision",
+      "abstract": "Vision Transformers convert images to sequences by slicing them into patches. The size of these patches controls a speed/accuracy tradeoff, with smaller patches leading to higher accuracy at greater computational cost, but changing the patch size typically requires retraining the model. In this paper, we demonstrate that simply randomizing the patch size at training time leads to a single set of weights that performs well across a wide range of patch sizes, making it possible to tailor the model to different compute budgets at deployment time. We extensively evaluate the resulting model, which we call FlexiViT, on a wide range of tasks, including classification, image-text retrieval, open-world detection, panoptic segmentation, and semantic segmentation, concluding that it usually matches, and sometimes outperforms, standard ViT models trained at a single patch size in an otherwise identical setup. Hence, FlexiViT training is a simple drop-in improvement for ViT that makes it easy to add compute-adaptive capabilities to most models relying on a ViT backbone architecture.",
+      "url": "https://arxiv.org/abs/2212.08013",
+      "status": "Planned",
+      "dateRead": null,
+      "arxivId": "2212.08013"
+    },
+    {
+      "id": "patch-n-pack-navit-a-vision-transformer-for-any-aspect-ratio-and-resolution",
+      "title": "Patch n' Pack: NaViT, a Vision Transformer for any Aspect Ratio and Resolution",
+      "authors": [
+        "Mostafa Dehghani",
+        "Basil Mustafa",
+        "Josip Djolonga",
+        "Jonathan Heek",
+        "Matthias Minderer",
+        "Mathilde Caron",
+        "Andreas Steiner",
+        "Joan Puigcerver",
+        "Robert Geirhos",
+        "Ibrahim Alabdulmohsin",
+        "Avital Oliver",
+        "Piotr Padlewski",
+        "Alexey Gritsenko",
+        "Mario Lučić",
+        "Neil Houlsby"
+      ],
+      "year": 2023,
+      "category": "Images & Vision",
+      "abstract": "The ubiquitous and demonstrably suboptimal choice of resizing images to a fixed resolution before processing them with computer vision models has not yet been successfully challenged. However, models such as the Vision Transformer (ViT) offer flexible sequence-based modeling, and hence varying input sequence lengths. We take advantage of this with NaViT (Native Resolution ViT) which uses sequence packing during training to process inputs of arbitrary resolutions and aspect ratios. Alongside flexible model usage, we demonstrate improved training efficiency for large-scale supervised and contrastive image-text pretraining. NaViT can be efficiently transferred to standard tasks such as image and video classification, object detection, and semantic segmentation and leads to improved results on robustness and fairness benchmarks. At inference time, the input resolution flexibility can be used to smoothly navigate the test-time cost-performance trade-off. We believe that NaViT marks a departure from the standard, CNN-designed, input and modelling pipeline used by most computer vision models, and represents a promising direction for ViTs.",
+      "url": "https://arxiv.org/abs/2307.06304",
+      "status": "Planned",
+      "dateRead": null,
+      "arxivId": "2307.06304"
+    },
+    {
+      "id": "resformer-scaling-vits-with-multi-resolution-training",
+      "title": "ResFormer: Scaling ViTs with Multi-Resolution Training",
+      "authors": [
+        "Rui Tian",
+        "Zuxuan Wu",
+        "Qi Dai",
+        "Han Hu",
+        "Yu Qiao",
+        "Yu-Gang Jiang"
+      ],
+      "year": 2023,
+      "category": "Images & Vision",
+      "abstract": "Vision Transformers (ViTs) have achieved overwhelming success, yet they suffer from vulnerable resolution scalability, i.e., the performance drops drastically when presented with input resolutions that are unseen during training. We introduce, ResFormer, a framework that is built upon the seminal idea of multi-resolution training for improved performance on a wide spectrum of, mostly unseen, testing resolutions. In particular, ResFormer operates on replicated images of different resolutions and enforces a scale consistency loss to engage interactive information across different scales. More importantly, to alternate among varying resolutions effectively, especially novel ones in testing, we propose a global-local positional embedding strategy that changes smoothly conditioned on input sizes. We conduct extensive experiments for image classification on ImageNet. The results provide strong quantitative evidence that ResFormer has promising scaling abilities towards a wide range of resolutions. We also demonstrate that ResFormer is flexible and can be easily extended to semantic segmentation, object detection and video action recognition.",
+      "url": "https://arxiv.org/abs/2212.00776",
+      "status": "Planned",
+      "dateRead": null,
+      "arxivId": "2212.00776"
     }
   ]
 }

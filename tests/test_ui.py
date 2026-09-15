@@ -20,10 +20,18 @@ class UiTests(unittest.TestCase):
         for phrase in ("ready for review", "review queue", "review due", "mark reviewed", "review_interval"):
             self.assertNotIn(phrase, source.lower())
 
-    def test_catalog_has_forty_complete_papers(self):
+    def test_catalog_has_complete_papers(self):
         data = json.loads((ROOT / "papers.json").read_text(encoding="utf-8"))
-        self.assertEqual(len(data["papers"]), 40)
+        self.assertEqual(len(data["papers"]), 43)
         self.assertTrue(all(paper.get("title") and paper.get("abstract") and paper.get("url") for paper in data["papers"]))
+
+    def test_september_session_has_variable_resolution_papers(self):
+        data = json.loads((ROOT / "sessions.json").read_text(encoding="utf-8"))
+        session = next(item for item in data["sessions"] if item["date"] == "2026-09-21")
+        self.assertEqual(len(session["paperIds"]), 3)
+        self.assertIn("flexivit-one-model-for-all-patch-sizes", session["paperIds"])
+        self.assertIn("patch-n-pack-navit-a-vision-transformer-for-any-aspect-ratio-and-resolution", session["paperIds"])
+        self.assertIn("resformer-scaling-vits-with-multi-resolution-training", session["paperIds"])
 
     def test_dataset_catalog_has_required_fields(self):
         data = json.loads((ROOT / "datasets.json").read_text(encoding="utf-8"))

@@ -6,7 +6,7 @@ The source PDFs remain local. Only titles, authors, abstracts, links, categories
 
 ## Current collection
 
-The catalog currently contains **40 unique AI research papers** imported recursively from `C:\Users\cheth\Desktop\papers`. Duplicate copies are merged by arXiv identity, directories named `Ignore` are skipped, and non-paper material is excluded through `paper-overrides.json`.
+The catalog currently contains **40 completed papers** imported recursively from `C:\Users\cheth\Desktop\papers`, plus papers planned for upcoming Monday sessions. Duplicate copies are merged by arXiv identity, directories named `Ignore` are skipped, and non-paper material is excluded through `paper-overrides.json`.
 
 ## Add papers
 
@@ -118,6 +118,8 @@ Each entry in `papers.json` follows this shape:
   "dateRead": "2026-09-15"
 }
 ```
+
+Upcoming session papers use `"status": "Planned"` and `"dateRead": null` until they are completed.
 
 ## Maintenance
 

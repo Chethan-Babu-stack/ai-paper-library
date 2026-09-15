@@ -206,6 +206,7 @@ kbd { color: var(--text-faint); background: white; border: 1px solid var(--borde
 .row-flags { display: flex; align-items: center; gap: 6px; margin-top: 9px; }
 .status-pill { border-radius: 99px; padding: 2px 7px; font-size: 11px; font-weight: 700; }
 .status-pill { color: var(--accent-hover); background: var(--accent-soft); }
+.status-pill.planned { color: var(--warning); background: var(--warning-soft); }
 .paper-topic, .paper-year { align-self: start; color: var(--text-soft); font-size: 12px; padding-top: 2px; }
 .paper-topic { overflow-wrap: anywhere; }
 
