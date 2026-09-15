@@ -20,6 +20,10 @@ class UiTests(unittest.TestCase):
         for phrase in ("ready for review", "review queue", "review due", "mark reviewed", "review_interval"):
             self.assertNotIn(phrase, source.lower())
 
+    def test_header_has_no_plan_monday_action(self):
+        html = (ROOT / "index.html").read_text(encoding="utf-8")
+        self.assertNotIn("Plan Monday", html)
+
     def test_catalog_has_complete_papers(self):
         data = json.loads((ROOT / "papers.json").read_text(encoding="utf-8"))
         self.assertEqual(len(data["papers"]), 43)
